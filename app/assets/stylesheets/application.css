@@ -41,6 +41,7 @@ a:hover {background:none;color:steelblue}
 .control-label {font-size:18px;font-weight:600;color:#666}
 .devise-links {line-height:24px}
 .field_with_errors {background:none;color:red;padding:inherit;display:inherit;border-radius:0px !important}
+.greyedout {color:#CCC}
 
 #error_explanation {background:none;margin:0px;width:inherit;border:none}
 #error_explanation h2 {background:none;color:inherit;padding:0px}
