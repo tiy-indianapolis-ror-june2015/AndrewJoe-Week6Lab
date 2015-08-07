@@ -4,12 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.timeline(user)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @posts = Posts.all
   end
 
   # GET /posts/new
