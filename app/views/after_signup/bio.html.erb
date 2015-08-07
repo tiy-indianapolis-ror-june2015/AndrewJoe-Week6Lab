@@ -1,0 +1,16 @@
+<article class="col-xs-12 col-sm-6">
+
+	<h2><span class="greyedout">Username <i class="fa fa-angle-right"></i></span> Bio <span class="greyedout"><i class="fa fa-angle-right"></i> Pic</span></h2>	
+
+	<%= form_for @user, url: wizard_path do |f| %>
+		<div class="field form-group">
+			<%= f.label :bio, class:'control-label' %><br>
+			<%= f.text_area :bio, class: 'form-control' %>
+		</div>
+		<div class="actions">
+			<%= f.submit 'Next', class: 'btn btn-primary' %>
+			<%= link_to 'Skip', next_wizard_path, class: 'btn btn-default' %>
+		</div>
+	<% end %>
+
+</article>
