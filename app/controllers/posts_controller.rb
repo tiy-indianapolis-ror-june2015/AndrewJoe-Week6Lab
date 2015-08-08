@@ -62,6 +62,24 @@ class PostsController < ApplicationController
     end
   end
 
+  def follow
+    if @post.user_id == current_user.id
+      flash[:error] = "You can't follow yourself"
+    else
+      current_user.follow(@post.user)
+      flash[:notice] = "You are now following #{@post.user.name}."
+    end
+  end
+
+  def unfollow
+    current_user.stop_following{@post.user}
+    flash[:notice] = "You are no longer following #{@post.user.name}"
+  end
+
+  def allposts
+    @posts = Post.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
