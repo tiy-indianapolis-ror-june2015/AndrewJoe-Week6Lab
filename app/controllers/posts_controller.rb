@@ -4,13 +4,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.timeline(user)
+    @posts = Post.timeline(current_user)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @posts = Posts.all
   end
 
   # GET /posts/new
@@ -26,6 +25,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
@@ -62,6 +62,24 @@ class PostsController < ApplicationController
     end
   end
 
+  def follow
+    if @post.user_id == current_user.id
+      flash[:error] = "You can't follow yourself"
+    else
+      current_user.follow(@post.user)
+      flash[:notice] = "You are now following #{@post.user.name}."
+    end
+  end
+
+  def unfollow
+    current_user.stop_following{@post.user}
+    flash[:notice] = "You are no longer following #{@post.user.name}"
+  end
+
+  def allposts
+    @posts = Post.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -70,6 +88,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:body)
+      params.require(:post).permit(:body,:user_id)
     end
 end
