@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :posts
-  devise_for :users
+  devise_for :users, controllers: {registrations: "registrations"}
+  member do
+    get :follow
+    get :unfollow
+    get :allposts
+  end
   resources :after_signup
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
