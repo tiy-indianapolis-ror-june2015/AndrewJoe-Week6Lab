@@ -1,5 +1,7 @@
 <% @posts.each do |post| %>
 
     <p><%= post.body %></p>
+    <p><%= button_to 'Follow', follow_path(:id => post.id)%></p>
+    <p><%= button_to "Unfollow", unfollow_path(:id => post.id) %></p>
 
 <% end %>
