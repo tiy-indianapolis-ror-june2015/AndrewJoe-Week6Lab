@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem "acts_as_follower"
 gem 'kaminari'
 gem 'wicked'
+gem 'faker'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

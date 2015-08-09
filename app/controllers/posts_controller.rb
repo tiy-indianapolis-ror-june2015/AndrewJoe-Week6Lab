@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   def follow
     @post = Post.find(params[:id])
     if @post.user_id == current_user.id
-      flash[:error] = "You can't follow yourself"
+      flash[:notice] = "You can't follow yourself"
       redirect_to(posts_path)
     else
       current_user.follow(@post.user)
