@@ -1,8 +1,23 @@
+<div class="jumbotron">
+	<div class="container">
+		<h1>Less Kanye.</h1>
+		<p>More conversation. Try Tw!tter today.</p>
+		<p><a class="btn btn-info btn-lg" href="#" role="button">Sign up</a></p>
+	</div>
+</div>	
+
 <article class="col-xs-12 col-sm-6">
 	
 	<h2>Log in</h2>
 
 	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	
+	<% if devise_error_messages!.length > 0 %>
+		<div class="alert alert-danger" role="alert">
+			<%= devise_error_messages! %>
+		</div>
+	<% end %>
+	
 		<div class="field form-group">
 			<%= f.label :email, class:'control-label' %>
 			<div class="input-group">

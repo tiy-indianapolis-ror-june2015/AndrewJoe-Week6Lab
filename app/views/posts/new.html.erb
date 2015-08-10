@@ -1,5 +1,15 @@
-<h1>New Post</h1>
+<article class="col-xs-12 col-sm-6">
 
-<%= render 'form' %>
+	<h2>New Post</h2>
 
-<%= button_to('Back', posts_path, :class => 'btn btn-large btn-primary')  %>
+	<% if defined?(devise_error_messages!.length) %>
+		<div class="alert alert-danger" role="alert">
+			<%= devise_error_messages! %>
+		</div>
+	<% end %>
+	
+	<%= render 'form' %>
+	
+	<%= button_to('Back', posts_path, :class => 'btn btn-large btn-default')  %>
+		
+</article>
