@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.timeline(current_user).order(:created_at).page(params[:page]).per(10)
+    if current_user
+      @posts = Post.timeline(current_user).order(:created_at).page(params[:page]).per(10)
+    else
+      @posts = Post.all.order(:created_at).page(params[:page]).per(15)
+    end
   end
 
   # GET /posts/1
