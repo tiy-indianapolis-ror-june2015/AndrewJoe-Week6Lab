@@ -7,7 +7,6 @@
 			<%= notice %>
 		</div>
 	<% end %>
-<p id="notice"><%= notice %></p>
 <% if current_user %>
   <p> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
 <% else %>
@@ -38,30 +37,11 @@
   </tbody>
 </table>
 
-	<table>
-		<thead>
-			<tr>
-				<th>Body</th>
-				<th colspan="3"></th>
-			</tr>
-		</thead>
-	<%= paginate @posts %>
-		<tbody>
-			<% @posts.each do |post| %>
-				<tr>
-					<td><%= post.body %> Written by: <%= post.user.name %></td>
-						<% if post.user_id != current_user.id %>
-						<td>  <%= button_to 'Stop Following', unfollow_path(:id => post.id) %> </td>
-						<% end %>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
 
 	<br>
 
 	<%= button_to('New Post', new_post_path, :class => 'btn btn-large btn-primary') %>
-	<%= button_to('All User Posts', allposts_path, :class => 'btn btn-large btn-default') %>
+	<%= button_to('All User Posts', allposts_path, method: :get, :class => 'btn btn-large btn-default') %>
 	<%= button_to('Sign Out', destroy_user_session_path, method: :delete, :class => 'btn btn-large btn-default') %>
 
 </article>
