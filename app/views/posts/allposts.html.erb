@@ -1,6 +1,14 @@
+<% if current_user %>
+  <p> <%= link_to 'Sign Out', posts_path %>
+<% else %>
+  <p> <%= link_to 'Sign In', new_user_session_path %> </p>
+  <p> <%= link_to 'Register', new_user_registration_path %> </p>
+<% end %>
 <p><%= paginate @posts %></p>
 <% @posts.each do |post| %>
     <p><%= post.body %> Written by: <%= post.user.name %></p>
-    <p><%= button_to 'Follow', follow_path(:id => post.id)%></p>
+    <% if current_user %>
+      <p><%= button_to 'Follow', follow_path(:id => post.id)%></p>
+    <% end %>
 
 <% end %>
