@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+100.times do
+  user = User.create(email: Faker::Internet.email,
+              name: Faker::Name.name,
+              bio: Faker::Lorem.sentence(2),
+              pic: Faker::Avatar.image,
+              password: "abc12345678",
+              password_confirmation: "abc12345678")
+
+  15.times do
+    post = Post.create(body: Faker::Lorem.sentence(3))
+    post.created_at = Faker::Time.between(500.days.ago, Time.now, :all)
+    user.posts << post
+  end
+end

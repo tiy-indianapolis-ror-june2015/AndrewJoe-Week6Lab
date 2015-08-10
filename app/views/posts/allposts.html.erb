@@ -1,5 +1,6 @@
+<p><%= paginate @posts %></p>
 <% @posts.each do |post| %>
-
-    <p><%= post.body %></p>
+    <p><%= post.body %> Written by: <%= post.user.name %></p>
+    <p><%= button_to 'Follow', follow_path(:id => post.id)%></p>
 
 <% end %>

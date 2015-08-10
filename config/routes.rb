@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-post 'profile/follow' => 'profile#follow' as: :follow
-post 'profile/unfollow' => 'profile#unfollow' as: :unfollow
+post 'posts/follow' => 'posts#follow', as: :follow
+post 'posts/unfollow' => 'posts#unfollow', as: :unfollow
 
   resources :posts
   devise_for :users, controllers: {registrations: "registrations"}

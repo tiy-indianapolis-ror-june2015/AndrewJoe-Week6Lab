@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.timeline(current_user)
+    @posts = Post.timeline(current_user).order(:created_at).page(params[:page]).per(10)
   end
 
   # GET /posts/1
@@ -63,21 +63,26 @@ class PostsController < ApplicationController
   end
 
   def follow
+    @post = Post.find(params[:id])
     if @post.user_id == current_user.id
-      flash[:error] = "You can't follow yourself"
+      flash[:notice] = "You can't follow yourself"
+      redirect_to(posts_path)
     else
       current_user.follow(@post.user)
       flash[:notice] = "You are now following #{@post.user.name}."
+      redirect_to(posts_path)
     end
   end
 
   def unfollow
-    current_user.stop_following{@post.user}
+    @post = Post.find(params[:id])
+    current_user.stop_following(@post.user)
     flash[:notice] = "You are no longer following #{@post.user.name}"
+    redirect_to(posts_path)
   end
 
   def allposts
-    @posts = Post.all
+    @posts = Post.all.order(:created_at).page(params[:page]).per(15)
   end
 
   private
