@@ -1,0 +1,3 @@
+<% if current_user %>
+  <td><%= button_to 'Follow', follow_path(:id => post.id)%></td>
+<% end %>

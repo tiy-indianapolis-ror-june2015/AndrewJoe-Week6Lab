@@ -1,0 +1,6 @@
+<% if current_user %>
+	<%= button_to('New Post', new_post_path, method: :get, :class => 'btn btn-large btn-primary') %>
+	<%= button_to('All User Posts', allposts_path, method: :get, :class => 'btn btn-large btn-default') %>
+	<%= button_to('Sign Out', destroy_user_session_path, method: :delete, :class => 'btn btn-large btn-default') %>
+<% else %>
+<% end %>
