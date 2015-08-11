@@ -1,0 +1,5 @@
+<% if current_user%>
+  <% if post.user_id != current_user.id %>
+    <td>  <%= button_to 'Stop Following', unfollow_path(:id => post.id) %> </td>
+  <% end %>
+<% end %>
